@@ -3,15 +3,16 @@ async function analyzeName(name) {
   const errorMessageDiv = document.getElementById("error-message");
   const analyzeButton = document.querySelector("button");
 
-
   analyzeButton.textContent = "Fetching data...";
   analyzeButton.disabled = true;
 
   resultsDiv.innerHTML = "";
   errorMessageDiv.textContent = "";
 
+  const getCountryNames = new Intl.DisplayNames(['en'], { type: 'region' });
+
   try {
-    const response = await fetch(`https://api.nationalize.io/?name=${encodeURIComponent(name)}`);
+    const response = await fetch(`https://api.nationalize.io/?name=${(name)}`);
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }
@@ -22,8 +23,11 @@ async function analyzeName(name) {
     if (!topCountry) {
       resultsDiv.innerHTML = `<p>No nationality data found for "${name}".</p>`;
     } else {
+      const countryCode = topCountry.country_id;
+      const countryName = getCountryNames.of(countryCode) || countryCode;
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
-      resultsDiv.innerHTML = `<p>${capitalizedName} is likely from <strong>${topCountry.country_id}</strong> with <strong>${(topCountry.probability * 100).toFixed(2)}%</strong> certainty.</p>`;
+
+      resultsDiv.innerHTML = `<p>${capitalizedName} is likely from <strong>${countryName}</strong> with <strong>${(topCountry.probability * 100).toFixed(2)}%</strong> certainty.</p>`;
     }
   } catch (error) {
     errorMessageDiv.textContent = "An error occurred: " + error.message;
