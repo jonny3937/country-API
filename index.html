@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nationality api</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <header>
+    <h1>Nationality Analizer </h1>
+    <p>Predict the Ethnicity of a Name</p>
+  </header>
+ <form action="">
+    <label for="name">Enter a name:</label>
+  <br></br>
+    <input type="text" id="name" name="name" placeholder="Enter a name" required>
+    <br></br>
+    <button type="submit">Analyze</button>
+  </form>
+
+  <section id="results">
+    <h2>Results</h2>
+    <div id="nationality-results">
+    
+    </div>
+    <div id="error-message" style="color: red;"></div>
+
+    <script src="./src/index.js"></script>
+  
+    </script>
+  </section>
+</body>
+</html>
+
+
+
+
+
+<!-- Nationalize API reference
+A simple API that estimates the nationality of a person based on a last name
+The Nationalize API allows you to check the statistical probability of a name belonging to a certain nationality.
+
+The API exposes a single endpoint that accepts a name and returns a payload with the prediction. It uses query parameters for requests and returns JSON-encoded responses.
+
+The API is free for up to 100 names/day. No sign-up or API key is needed. So go ahead and try it out. You can sign up for an API key if you need more requests.
+
+We support batch processing to reduce the overhead of many HTTP calls.
+
+The API is built for high-volume processing, and as such, there is no rate limiting except your daily or monthly limit. You can keep track of that through rate-limiting headers or your account . -->
