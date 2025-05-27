@@ -1,7 +1,7 @@
 async function analyzeName(name) {
-  const resultsDiv = document.getElementById("nationality-results");
-  const errorMessageDiv = document.getElementById("error-message");
-  const analyzeButton = document.querySelector("button");
+  var resultsDiv = document.getElementById("nationality-results");
+  var errorMessageDiv = document.getElementById("error-message");
+  var analyzeButton = document.querySelector("button");
 
   analyzeButton.textContent = "Fetching data...";
   analyzeButton.disabled = true;
@@ -9,25 +9,25 @@ async function analyzeName(name) {
   resultsDiv.innerHTML = "";
   errorMessageDiv.textContent = "";
 
-  const getCountryNames = new Intl.DisplayNames(['en'], { type: 'region' });
+  var getCountryNames = new Intl.DisplayNames(['en'], { type: 'region' });
 
   try {
-    const response = await fetch(`https://api.nationalize.io/?name=${(name)}`);
+    var response = await fetch("https://api.nationalize.io/?name=" + name);
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }
 
-    const data = await response.json();
-    const topCountry = data.country[0];
+    var data = await response.json();
+    var topCountry = data.country[0];
 
     if (!topCountry) {
-      resultsDiv.innerHTML = `<p>No nationality data found for "${name}".</p>`;
+      resultsDiv.innerHTML = "<p>No nationality data found for \"" + name + "\".</p>";
     } else {
-      const countryCode = topCountry.country_id;
-      const countryName = getCountryNames.of(countryCode) || countryCode;
-      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+      var countryCode = topCountry.country_id;
+      var countryName = getCountryNames.of(countryCode);
+      var capitalizedName = name[0].toUpperCase() + name.substring(1);
 
-      resultsDiv.innerHTML = `<p>${capitalizedName} is likely from <strong>${countryName}</strong> with <strong>${(topCountry.probability * 100).toFixed(2)}%</strong> certainty.</p>`;
+      resultsDiv.innerHTML = "<p><strong>"+ capitalizedName + "</strong>  is likely from <strong>" + countryName + "</strong> with <strong>" + (topCountry.probability * 100).toFixed(2) + "%</strong> certainty.</p>";
     }
   } catch (error) {
     errorMessageDiv.textContent = "An error occurred: " + error.message;
@@ -37,14 +37,14 @@ async function analyzeName(name) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
-  const nameInput = document.getElementById("name");
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.querySelector("form");
+  var nameInput = document.getElementById("name");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const name = nameInput.value.trim();
-    if (name) {
+    var name = nameInput.value;
+    if (name !== "") {
       analyzeName(name);
     }
   });

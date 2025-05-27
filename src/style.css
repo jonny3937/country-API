@@ -1,36 +1,94 @@
-header{
-  background-color: #150d3b;
-  padding: 20px;
-  text-align: center; 
-  color: white; 
+body {
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient( rgba(15, 7, 51, 0.5)), url("./1.jpg");
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
 }
-form{
-  margin: 20px auto;
-  max-width: 400px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-self: center;
+
+
+header {
+  background-color: #150d3b;
+  padding: 30px 20px;
   text-align: center;
-  align-items: center;
+  color: white;
+  align-content: space-between;
 
 }
-#results{
-  margin: 20px auto;
+
+.logo {
+  margin: 0;
+  font-size: .9em;
+  padding-left: 10px;
+  
+}
+
+header p {
+  margin-top: 5px;
+  font-size: 1.1em;
+}
+.icons{
+  text-decoration: none;
+  color: antiquewhite;
+
+}
+
+form {
+  margin: 30px auto;
   max-width: 400px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  justify-self: center;
+  padding: 25px;
+  
+  border-radius: 10px;
+  background-color: #f1f1ef;
   text-align: center;
 }
-button{
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
   background-color: #4b10ec;
   color: white;
-  padding: 10px 15px;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  align-self: center;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #360dc5;
+}
+
+#results {
+  margin: 20px auto;
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+  color: #333;
+}
+
+#error-message {
+  margin-top: 15px;
+  font-weight: bold;
+}
+strong{
+  color: #4b10ec;
 }
